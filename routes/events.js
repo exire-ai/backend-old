@@ -13,4 +13,13 @@ router.get('/delete/:placeID', events.delete);
 router.post('/update/:placeID', events.update);
 router.get('/views/:placeID', events.views);
 
+// /getMany/:userID/:latitude/:longitude/:price/:unixStart/:amount
+
+// Categories
+// Sports
+// Concerts
+// Shows
+
+// /getNewEvents
+
 module.exports = router;

@@ -15,6 +15,7 @@ var venueRouter = require('./routes/venues');
 var venueReservationRouter = require('./routes/venuesReservations');
 var venueTicketRouter = require('./routes/venuesTickets');
 var planRouter = require('./routes/plans');
+var notificationRouter = require('./routes/notifications');
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use('/venues', venueRouter);
 app.use('/venuesReservations', venueReservationRouter);
 app.use('/venuesTickets', venueTicketRouter);
 app.use('/plans', planRouter);
+app.use('/notifications', notificationRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
