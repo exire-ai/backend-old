@@ -34,4 +34,7 @@ router.get('/deletePlans/:userID/:planID', users.deletePlans);
 router.get('/clearPlans/:userID', users.clearPlans);
 router.post('/addPlans/:userID', users.addPlans);
 
+// User token
+router.get('/updateToken/:userID/:newToken', users.updateToken);
+
 module.exports = router;
