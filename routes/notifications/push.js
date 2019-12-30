@@ -18,9 +18,9 @@ module.exports = async function (req, resp) {
   }).then(result => {
     if (result != null) {
       if (req.query.dev == null) {
-        production = false
-      } else {
         production = true
+      } else {
+        production = false
       }
       var apnProvider = new apn.Provider({
         token: {
