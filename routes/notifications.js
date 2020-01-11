@@ -8,6 +8,6 @@ var router = express.Router();
 let notifications = require('./notifications/main');
 
 router.post('/push/:userID', notifications.push);
-// router.post('/pushAll', notifications.pushAll);
+router.post('/pushAll', notifications.pushAll);
 
 module.exports = router;
