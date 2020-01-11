@@ -4,4 +4,4 @@ For exire.ai
 #################################################*/
 
 module.exports.getAllCategories = require('./getAllCategories');
-module.exports.getHomescreen = require('./getHomescreen');
+module.exports.getHomescreen = require('./getHomeScreen');
