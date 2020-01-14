@@ -25,6 +25,7 @@ const VenueSchema = require('./schema/Venue');
 const VenueReservationsSchema = require('./schema/VenueReservations');
 const VenueTicketsSchema = require('./schema/VenueTickets');
 const EventSchema = require('./schema/Event');
+const NewEventSchema = require('./schema/NewEvent');
 
 //Using certain collections within the database with their corresponding schemas
 const UserModel = Users.model('Data', UserSchema, 'Data');
@@ -32,6 +33,7 @@ const VenueModel = Places.model('Venues', VenueSchema, 'Venues');
 const VenueReservationModel = Places.model('VenuesReservations', VenueReservationsSchema, 'VenuesReservations');
 const VenueTicketModel = Places.model('VenuesTickets', VenueTicketsSchema, 'VenuesTickets');
 const EventModel = Places.model('Events', EventSchema, 'Events');
+const NewEventModel = Places.model('NewEvents', NewEventSchema, 'NewEvents');
 
 //Creating a dictionary of the datatype names and the models
 const modelDict = {
@@ -39,7 +41,8 @@ const modelDict = {
   'venue' : VenueModel,
   'venueReservation' : VenueReservationModel,
   'venueTicket' : VenueTicketModel,
-  'event' : EventModel
+  'event' : EventModel,
+  'newEvent' : NewEventModel
 }
 
 //Exporting model dictionary to be used within endpoints
