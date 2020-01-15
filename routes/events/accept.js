@@ -29,7 +29,7 @@ module.exports = async function (req, res) {
     // console.log("result:", result)
     if (result != false) {
       var tempObj = {};
-      for (key in result) {
+      for (key in result["_doc"]) {
         tempObj[key] = result[key]
       }
       console.log("tempObj:", tempObj)
@@ -37,7 +37,7 @@ module.exports = async function (req, res) {
       // result2 = Object.assign({}, JSON.parse(result));
       // console.log(result2)
       // line to make it work using request body in meantime
-      tempObj = req.body
+      // tempObj = req.body
       var model = new modelDict.event(tempObj)
       model.save(tempObj)
       .then(result => {
