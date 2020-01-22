@@ -12,5 +12,6 @@ router.post('/create', venues.create);
 router.get('/delete/:placeID', venues.delete);
 router.post('/update/:placeID', venues.update);
 router.get('/views/:placeID', venues.views);
+router.get('/linkClicks/:placeID', venues.linkClicks);
 
 module.exports = router;

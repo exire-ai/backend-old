@@ -19,6 +19,7 @@ const EventSchema = new mongoose.Schema({
 	'longitude' : { type: Number, default: 0 },
 	'cost' : { type: Number, default: 0 },
 	'peopleWatching' : { type: Number, default: 0 },
+	'linkClicks' : { type: Number, default: 0 },
 	'tag' : { type: String, default: "" },
   'ticketURL' : { type: String, default: "" }
 });

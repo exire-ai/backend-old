@@ -23,6 +23,7 @@ const VenueReservationSchema = new mongoose.Schema({
 	'cost' : { type: Number, default: 0 },
 	'rank' : { type: Number, default: 4 },
 	'peopleWatching' : { type: Number, default: 0 },
+	'linkClicks' : { type: Number, default: 0 },
 	'tag' : { type: String, default: "" },
 	'reservationURL' : { type: String, default: "" }
 });
