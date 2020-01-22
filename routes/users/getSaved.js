@@ -15,7 +15,15 @@ module.exports = async function (req, res) {
     _id : 0
   }).then(result => {
     if (result != null) {
-      res.json(result.saved);
+      modelDict.venue.find({
+        placeID: { $in: result.saved }
+      }, {
+        _id: 0
+      }).then(result => {
+        res.json(result);
+      }).catch(err => {
+        res.status(500).json(err)
+      })
     } else {
       res.json(false);
     }
