@@ -458,6 +458,22 @@ var getCommunityFavorites = async function (callback) {
   })
 }
 
+var getEvents = async function (callback) {
+  modelDict.event.find({}, {
+    _id: 0
+  }, {
+    limit: 15,
+    sort: {
+      startUNIX: -1
+    }
+  }).then(result => {
+    callback(result)
+  }).catch(err => {
+    var result = hardcoded[2]["data"]
+    callback(result)
+  })
+}
+
 module.exports = async function (req, res) {
   if(!req.params.userID) {
     return res.status(400).send('Missing userID')
@@ -471,37 +487,43 @@ module.exports = async function (req, res) {
       getRecommended(result.categories, function(recommendedForYou) {
         getTopPicks(idList, function(topPicks) {
           getCommunityFavorites(function(communityFavorites) {
-            var topAndCommunity = topPicks.concat(communityFavorites)
-            for ( var i = recommendedForYou.length - 1; i >= 0; i--) {
-              for (var j = 0; j < topAndCommunity.length; j++) {
-                if(recommendedForYou[i] && (recommendedForYou[i].placeID === topAndCommunity[j].placeID)) {
-                  recommendedForYou.splice(i, 1);
+            getEvents(function(events) {
+              var topAndCommunity = topPicks.concat(communityFavorites)
+              for ( var i = recommendedForYou.length - 1; i >= 0; i--) {
+                for (var j = 0; j < topAndCommunity.length; j++) {
+                  if(recommendedForYou[i] && (recommendedForYou[i].placeID === topAndCommunity[j].placeID)) {
+                    recommendedForYou.splice(i, 1);
+                  }
                 }
               }
-            }
-            for ( var i = communityFavorites.length - 1; i >= 0; i--) {
-              for (var j = 0; j < topPicks.length; j++) {
-                if(communityFavorites[i] && (communityFavorites[i].placeID === topPicks[j].placeID)) {
-                  communityFavorites.splice(i, 1);
+              for ( var i = communityFavorites.length - 1; i >= 0; i--) {
+                for (var j = 0; j < topPicks.length; j++) {
+                  if(communityFavorites[i] && (communityFavorites[i].placeID === topPicks[j].placeID)) {
+                    communityFavorites.splice(i, 1);
+                  }
                 }
               }
-            }
 
-            res.json([
-              {
-                title: "Recommended for you",
-                data: shuffle(recommendedForYou)
-              },
-              {
-                title: "Our top picks",
-                data: shuffle(topPicks)
-              },
-              {
-                title: "Community favorites",
-                data: shuffle(communityFavorites)
-              }
-            ])
-          })
+              res.json([
+                {
+                  title: "Recommended for you",
+                  data: shuffle(recommendedForYou)
+                },
+                {
+                  title: "Our top picks",
+                  data: shuffle(topPicks)
+                },
+                {
+                  title: "Community favorites",
+                  data: shuffle(communityFavorites)
+                },
+                {
+                  title: "Events",
+                  data: shuffle(events)
+                }
+              ])
+            });
+          });
         });
       });
     } else {
