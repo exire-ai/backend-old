@@ -25,7 +25,7 @@ router.get('/getSaved/:userID', users.getSaved);
 router.post('/updateSaved/:userID', users.updateSaved);
 router.get('/deleteSaved/:userID/:eventID', users.deleteSaved);
 router.get('/clearSaved/:userID', users.clearSaved);
-router.post('/addSaved/:userID/:placeID', users.addSaved);
+router.get('/addSaved/:userID/:placeID', users.addSaved);
 
 // User plans
 router.get('/getPlans/:userID', users.getPlans);
