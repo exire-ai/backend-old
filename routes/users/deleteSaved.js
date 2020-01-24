@@ -17,13 +17,15 @@ module.exports = async function (req, res) {
     if (result != null) {
       var originalLength = result.saved.length
       for (var i = 0; i < originalLength; i++) {
-        if (result.saved[i].eventID == req.params.eventID) {
+        if (result.saved[i].placeID == req.params.placeID) {
           result.saved.splice(i, 1);
           break;
         }
       }
       if (result.saved.length == originalLength) {
+        console.log('here')
         res.send(false)
+        return
       }
       modelDict.user.updateOne({
         "userID" : req.params.userID
