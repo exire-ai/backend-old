@@ -13,14 +13,22 @@ module.exports = async function (req, res) {
     "userID" : req.params.userID
   }, {
     _id : 0
-  }).then(result => {
-    if (result != null) {
+  }).then(userResult => {
+    if (userResult != null) {
       modelDict.venue.find({
-        placeID: { $in: result.saved }
+        placeID: { $in: userResult.saved }
       }, {
         _id: 0
       }).then(result => {
-        res.json(result);
+        modelDict.event.find({
+          placeID: { $in: userResult.saved }
+        }, {
+          _id: 0
+        }).then(result1 => {
+          console.log(userResult.saved)
+          result = result.concat(result1)
+          res.json(result)
+        })
       }).catch(err => {
         res.status(500).json(err)
       })
