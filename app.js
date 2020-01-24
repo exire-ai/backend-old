@@ -12,8 +12,6 @@ var logger = require('morgan');
 var usersRouter = require('./routes/users');
 var eventRouter = require('./routes/events');
 var venueRouter = require('./routes/venues');
-var venueReservationRouter = require('./routes/venuesReservations');
-var venueTicketRouter = require('./routes/venuesTickets');
 var planRouter = require('./routes/plans');
 var notificationRouter = require('./routes/notifications');
 
@@ -32,8 +30,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/users', usersRouter);
 app.use('/events', eventRouter);
 app.use('/venues', venueRouter);
-app.use('/venuesReservations', venueReservationRouter);
-app.use('/venuesTickets', venueTicketRouter);
 app.use('/plans', planRouter);
 app.use('/notifications', notificationRouter);
 
