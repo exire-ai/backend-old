@@ -5,12 +5,47 @@ For exire.ai
 
 let modelDict = require('../models/schema').modelDict;
 
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+var idList = [
+  "themoma",
+  "sakebardecibel",
+  "arturos",
+  "artechouse",
+  "ziamaria",
+  "sushidamo",
+  "katzdelicatessan",
+  "barcade",
+  "themet",
+  "hudsonyards",
+  "minus10icecream",
+  "zeroottonove",
+  "thewhitney"
+]
+
 var hardcoded = [
   {
       "title" : "Recommended for you",
       "data" : [
           {
-              "eventID":"themoma",
+              "placeID":"themoma",
               "title":"The Museum of Modern Art",
               "imgURL":"https://www.nycgo.com/images/venues/1069/_moma_christopherpostlewaite_img_6440__x_large.jpg",
               "description":"World-class sculpture, art, and design museum",
@@ -35,7 +70,7 @@ var hardcoded = [
               "longitude": -73.990387,
               "cost": 32,
               "rank": 4.7,
-              "eventID": "centralrockgym",
+              "placeID": "centralrockgym",
               "type" : "venue"
           },
           {
@@ -50,7 +85,7 @@ var hardcoded = [
               "cost": 10,
               "rank": 4.9,
               "time": 1.5,
-              "eventID":"yogatothepeople",
+              "placeID":"yogatothepeople",
               "type" : "venue"
           },
           {
@@ -65,7 +100,7 @@ var hardcoded = [
               "longitude": -73.994268,
               "cost": 10,
               "rank": 4.5,
-              "eventID":"onobowls",
+              "placeID":"onobowls",
               "type" : "venue"
           },
           {
@@ -80,7 +115,7 @@ var hardcoded = [
               "longitude": -73.994853,
               "cost": 9,
               "rank": 4.3,
-              "eventID":"littlecupcakebakeshop",
+              "placeID":"littlecupcakebakeshop",
               "type" : "venue"
           },
           {
@@ -94,11 +129,11 @@ var hardcoded = [
               "longitude": -73.987791,
               "cost": 20,
               "rank": 4.3,
-              "eventID":"sakebardecibel",
+              "placeID":"sakebardecibel",
               "type" : "venue"
           },
           {
-              "eventID":"chinatownicecreamfactory",
+              "placeID":"chinatownicecreamfactory",
               "title":"Chinatown Ice Cream Factory",
               "imgURL":"https://www.nycgo.com/images/venues/4182/chinatown-ice-cream-factory-malcolm-brown-27__x_large.jpg",
               "description":"Compact ice cream shop with familiar to exotic flavors",
@@ -114,7 +149,7 @@ var hardcoded = [
               "type" : "venue"
           },
           {
-              "eventID":"lachurreria",
+              "placeID":"lachurreria",
               "title":"La Churreria",
               "description":"Snug Spanish spot for paella, tapas, churros, and more",
               "imgURL":"https://static1.squarespace.com/static/54f857b5e4b021b24483e024/t/55089c7ee4b054c53450407f/1426627719697/?format=1500w",
@@ -144,12 +179,12 @@ var hardcoded = [
               "latitude": 40.727394,
               "longitude": -74.000395,
               "cost": 25,
-              "eventID":"arturos",
+              "placeID":"arturos",
               "rank": 4.9,
               "type" : "venue"
           },
           {
-              "eventID" : "artechouse",
+              "placeID" : "artechouse",
               "title" : "ARTECHOUSE",
               "imgURL" : "https://www.washingtonpost.com/resizer/5j66grexWjaa6VN7QoqFmTztJ18=/767x0/smart/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/T62YDLGA7EI6RH2PUG326JK2UU.jpg",
               "region" : "Chelsea",
@@ -174,7 +209,7 @@ var hardcoded = [
               "latitude" : 40.745404,
               "longitude" : -73.999339,
               "cost" : 13,
-              "eventID" : "ziamaria",
+              "placeID" : "ziamaria",
               "rank" : 4.9,
               "type" : "venue"
           },
@@ -190,7 +225,7 @@ var hardcoded = [
               "longitude" : -73.987079,
               "cost" : 9,
               "rank": 4.6,
-              "eventID" : "illaboratoriadelgelato",
+              "placeID" : "illaboratoriadelgelato",
               "type" : "venue"
           },
           {
@@ -206,11 +241,11 @@ var hardcoded = [
               "cost" : 25,
               "rank" : 5,
               "tips" : "The Rock Shrimp Tempura, Tori Kara-Age, and Stir-Fried Udon are incredible",
-              "eventID":"sushidamo",
+              "placeID":"sushidamo",
               "type" : "venue"
           },
           {
-              "eventID":"thefrick",
+              "placeID":"thefrick",
               "title":"Frick Collection",
               "imgURL":"https://d2kmm3vx031a1h.cloudfront.net/3Pp1Vnr3QPiMdh70SrnO_16936117_10210991815645242_154478172_o.jpg",
               "description":"Collection of industrialist Henry Clay Frick",
@@ -234,12 +269,12 @@ var hardcoded = [
               "latitude": 40.718968,
               "longitude": -73.974347,
               "cost": 0,
-              "eventID":"eastriverpark",
+              "placeID":"eastriverpark",
               "rank": 4.4,
               "type" : "venue"
           },
           {
-              "eventID":"southhighline",
+              "placeID":"southhighline",
               "title":"The High Line",
               "imgURL":"https://static1.squarespace.com/static/542036ade4b02579387899a0/t/5a5aa374085229afb8101a86/1516301357859/People+walking+on%C2%A0The+High+Line",
               "description":"1.45 mile-long elevated park and greenway",
@@ -270,12 +305,12 @@ var hardcoded = [
               "longitude": -73.987426,
               "cost": 8,
               "rank": 4.5,
-              "eventID" : "katzdelicatessan",
+              "placeID" : "katzdelicatessan",
               "type" : "venue"
           },
           {
               "title":"Barcade",
-              "eventID":"barcade",
+              "placeID":"barcade",
               "description":"Craft beers on tap & classic video games.",
               "imgURL":"https://media.timeout.com/images/104724050/630/472/image.jpg",
               "open":12,
@@ -288,7 +323,7 @@ var hardcoded = [
               "type" : "venue"
           },
           {
-              "eventID":"showfields",
+              "placeID":"showfields",
               "title":"SHOWFIELDS",
               "description":"Showcases new brands",
               "imgURL":"https://securecdn.pymnts.com/wp-content/uploads/2019/02/showfields-talzvinathanel-retail-eCommerce.jpg",
@@ -303,7 +338,7 @@ var hardcoded = [
               "type" : "venue"
           },
           {
-              "eventID":"themet",
+              "placeID":"themet",
               "title":"The Metropolitan Museum of Art",
               "imgURL":"https://www.metmuseum.org/-/media/images/visit/met-fifth-avenue/fifthave_teaser.jpg",
               "description":"Largest art museum in the United States",
@@ -328,7 +363,7 @@ var hardcoded = [
               "latitude": 40.744196,
               "longitude": -73.987401,
               "cost": 17,
-              "eventID":"museumofsex",
+              "placeID":"museumofsex",
               "rank": 4.7,
               "type" : "venue"
           },
@@ -343,12 +378,12 @@ var hardcoded = [
               "latitude": 40.75384,
               "longitude": -74.002262,
               "cost": 0,
-              "eventID":"hudsonyards",
+              "placeID":"hudsonyards",
               "rank": 5,
               "type" : "venue"
           },
           {
-              "eventID":"minus10icecream",
+              "placeID":"minus10icecream",
               "title":"Minus10 Ice Cream",
               "imgURL":"https://pbs.twimg.com/media/DNezcy7UEAApXyC.jpg",
               "description":"Thai style ice cream rolls",
@@ -374,13 +409,54 @@ var hardcoded = [
               "latitude": 40.740848,
               "longitude": -73.99157,
               "cost": 17,
-              "eventID":"zeroottonove",
+              "placeID":"zeroottonove",
               "rank": 4.7,
               "type" : "venue"
           }
       ]
   }
 ]
+
+var getRecommended = async function (categories, callback) {
+  modelDict.venue.find({
+    subcategory: { $in: categories }
+  }, {
+    _id: 0
+  }).then(result => {
+    callback(result)
+  }).catch(err => {
+    callback(hardcoded[0]["data"]);
+  })
+}
+
+var getTopPicks = async function (idList, callback) {
+  modelDict.venue.find({
+    placeID: { $in: idList }
+  }, {
+    _id: 0
+  }).then(result => {
+    callback(result)
+  }).catch(err => {
+    var result = hardcoded[1]["data"]
+    callback(result);
+  })
+}
+
+var getCommunityFavorites = async function (callback) {
+  modelDict.venue.find({}, {
+    _id: 0
+  }, {
+    limit: 24,
+    sort: {
+      peopleWatching: -1
+    }
+  }).then(result => {
+    callback(result)
+  }).catch(err => {
+    var result = hardcoded[2]["data"]
+    callback(result)
+  })
+}
 
 module.exports = async function (req, res) {
   if(!req.params.userID) {
@@ -392,9 +468,42 @@ module.exports = async function (req, res) {
     _id : 0
   }).then(result => {
     if (result != null) {
-      res.send(
-        hardcoded
-      )
+      getRecommended(result.categories, function(recommendedForYou) {
+        getTopPicks(idList, function(topPicks) {
+          getCommunityFavorites(function(communityFavorites) {
+            var topAndCommunity = topPicks.concat(communityFavorites)
+            for ( var i = recommendedForYou.length - 1; i >= 0; i--) {
+              for (var j = 0; j < topAndCommunity.length; j++) {
+                if(recommendedForYou[i] && (recommendedForYou[i].placeID === topAndCommunity[j].placeID)) {
+                  recommendedForYou.splice(i, 1);
+                }
+              }
+            }
+            for ( var i = communityFavorites.length - 1; i >= 0; i--) {
+              for (var j = 0; j < topPicks.length; j++) {
+                if(communityFavorites[i] && (communityFavorites[i].placeID === topPicks[j].placeID)) {
+                  communityFavorites.splice(i, 1);
+                }
+              }
+            }
+
+            res.json([
+              {
+                title: "Recommended for you",
+                data: shuffle(recommendedForYou)
+              },
+              {
+                title: "Our top picks",
+                data: shuffle(topPicks)
+              },
+              {
+                title: "Community favorites",
+                data: shuffle(communityFavorites)
+              }
+            ])
+          })
+        });
+      });
     } else {
       res.json(false);
     }
