@@ -25,7 +25,7 @@ router.get('/getSaved/:userID', users.getSaved);
 router.post('/updateSaved/:userID', users.updateSaved);
 router.get('/deleteSaved/:userID/:eventID', users.deleteSaved);
 router.get('/clearSaved/:userID', users.clearSaved);
-router.post('/addSaved/:userID', users.addSaved);
+router.post('/addSaved/:userID/:placeID', users.addSaved);
 
 // User plans
 router.get('/getPlans/:userID', users.getPlans);
@@ -33,6 +33,7 @@ router.post('/updatePlans/:userID', users.updatePlans);
 router.get('/deletePlans/:userID/:planID', users.deletePlans);
 router.get('/clearPlans/:userID', users.clearPlans);
 router.post('/addPlans/:userID', users.addPlans);
+router.get('/addPlan/:userID/:planID', users.addPlan);
 
 // User token
 router.get('/updateToken/:userID/:newToken', users.updateToken);

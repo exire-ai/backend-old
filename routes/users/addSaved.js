@@ -9,13 +9,16 @@ module.exports = async function (req, res) {
   if(!req.params.userID) {
     return res.status(400).send('Missing userID')
   }
+  if(!req.params.placeID) {
+    return res.status(400).send('Missing placeID')
+  }
   modelDict.user.findOne({
     "userID" : req.params.userID
   }, {
     _id : 0
   }).then(result => {
     if (result != null) {
-      result.saved.push(req.body)
+      result.saved.push(req.params.placeID)
       modelDict.user.updateOne({
         "userID" : req.params.userID
       }, {

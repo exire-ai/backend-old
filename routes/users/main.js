@@ -29,6 +29,7 @@ module.exports.updatePlans = require('./updatePlans');
 module.exports.deletePlans = require('./deletePlans');
 module.exports.clearPlans = require('./clearPlans');
 module.exports.addPlans = require('./addPlans');
+module.exports.addPlan = require('./addPlan');
 
 // User token
 module.exports.updateToken = require('./updateToken');
