@@ -76,20 +76,24 @@ module.exports = async function (req, res) {
   generateID(function(planID) {
     body.planID = planID
     getVenues(body.venues, function(result) {
-      var name = ""
-      var cost = 0
-      for (var i = 0; i < result.length; i++) {
-        var category = referenceDict[result[i]["subcategory"]]
-        cost = cost + result[i]["cost"]
-        if (category !== null) {
-          name = name.concat(category)
-          if (i !== result.length - 1) {
-            name = name.concat(" / ")
+      if (req.body.name == null) {
+        var name = ""
+        for (var i = 0; i < result.length; i++) {
+          var category = referenceDict[result[i]["subcategory"]]
+          if (category !== null) {
+            name = name.concat(category)
+            if (i !== result.length - 1) {
+              name = name.concat(" / ")
+            }
           }
         }
+        body.name = name
+      }
+      var cost = 0
+      for (var i = 0; i < result.length; i++) {
+        cost = cost + result[i]["cost"]
       }
       body.cost = cost
-      body.name = name
       var model = new modelDict.plan(body)
       model.save(body)
       .then(result => {
