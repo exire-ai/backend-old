@@ -14,3 +14,4 @@ module.exports.update = require('./update');
 module.exports.getByCategory = require('./getByCategory');
 module.exports.getRecommended = require('./getRecommended');
 module.exports.getRecentPlans = require('./getRecentPlans');
+module.exports.getNearby = require('./getNearby');

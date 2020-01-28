@@ -17,6 +17,10 @@ module.exports = async function (req, res) {
   }, {
     _id : 0
   }).then(result => {
+    if (result.saved.includes(req.params.placeID)) {
+      res.send(false)
+      return;
+    }
     if (result != null) {
       result.saved.push(req.params.placeID)
       modelDict.user.updateOne({

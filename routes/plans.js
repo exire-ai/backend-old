@@ -20,5 +20,6 @@ router.post('/update/:planID', plans.update);
 router.get('/getByCategory/:category', plans.getByCategory);
 router.get('/getRecommended/:userID', plans.getRecommended);
 router.get('/getRecentPlans', plans.getRecentPlans);
+router.get('/getNearby/:lat/:lon', plans.getNearby);
 
 module.exports = router;
