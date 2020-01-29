@@ -5,6 +5,47 @@ For exire.ai
 
 let modelDict = require('../models/schema').modelDict;
 
+// Food, Visual, Active, Alcohol, Sports, Musical, Treats
+
+var categoryDict =       {
+  "poke" : "food",
+  "barbeque" : "food",
+  "pizza" : "food",
+  "burgers" : "food",
+  "cafe" : "food",
+  "chinese" : "food",
+  "italian" : "food",
+  "japanese" : "food",
+  "markets" : "food",
+  "mexican" : "food",
+  "oriental" : "food",
+  "sandwiches" : "food",
+  "sushi" : "food",
+  "newamerican" : "food",
+  "artmuseums" : "visual",
+  "museums" : "visual",
+  "parks" : "active",
+  "artgalleries" : "visual",
+  "arcades" : "active",
+  "rockclimbing" : "active",
+  "spa" : "active",
+  "yoga" : "active",
+  "extreme" : "active",
+  "dancing" : "active",
+  "acaibowl" : "treat",
+  "icecream" : "treat",
+  "bakeries" : "food",
+  "tea" : "food",
+  "bars" : "alcohol",
+  "pubs" : "alcohol",
+  "cocktailbars" : "alcohol",
+  "speakeasies" : "alcohol",
+  "danceclubs" : "musical",
+  "karaoke" : "musical",
+  "wine_bars" : "alcohol",
+  "gelato" : "treat"
+}
+
 var latLonDict = {
   "Upper West Side" : [40.7870, -73.9754],
   "Upper East Side" : [40.7736, -73.9566],
@@ -75,6 +116,10 @@ module.exports = async function (req, res) {
   }
   getRegions(req.params.lat, req.params.lon, radius, function(regions) {
     getByRegions(regions, function(inRegions) {
+      var tempInRegions = []
+      for (elem in inRegions) {
+        inRegions[elem]["category"] = categoryDict[inRegions[elem]["subcategory"]]
+      }
       res.json(inRegions)
     });
   });
