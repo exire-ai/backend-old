@@ -110,7 +110,7 @@ module.exports = async function (req, res) {
   if(!req.params.lon) {
     return res.status(400).send('Missing lon')
   }
-  var radius = 2.5
+  var radius = 1
   if(req.query.radius) {
     radius = req.query.radius
   }
