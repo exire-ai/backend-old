@@ -96,7 +96,7 @@ var getByRegions = async function (regions, callback) {
     region: { $in: regions }
   }, {
     _id: 0
-  }).then(result => {
+  }).limit(10).then(result => {
     callback(result)
   }).catch(err => {
     callback([]);
