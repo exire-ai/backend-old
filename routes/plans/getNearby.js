@@ -104,7 +104,7 @@ var getByRegions = async function (regions, callback) {
 }
 
 var ensureNoOverlap = async function (lat, lon, venues, callback) {
-  radius = .01;
+  radius = .004;
   rangeList = [{
     "latitudeNorth" : parseFloat(lat) + radius,
     "latitudeSouth" : lat - radius,
@@ -132,7 +132,7 @@ var ensureNoOverlap = async function (lat, lon, venues, callback) {
       });
     }
   }
-  callback(venues)
+  callback(rangeList)
 }
 
 module.exports = async function (req, res) {
