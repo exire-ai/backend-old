@@ -96,7 +96,7 @@ var getByRegions = async function (regions, callback) {
     region: { $in: regions }
   }, {
     _id: 0
-  }).limit(100).then(result => {
+  }).limit(50).then(result => {
     callback(result)
   }).catch(err => {
     callback([]);
@@ -144,7 +144,7 @@ module.exports = async function (req, res) {
   if(!req.params.lon) {
     return res.status(400).send('Missing lon')
   }
-  var radius = 1
+  var radius = 2
   if(req.query.radius) {
     radius = req.query.radius
   }
