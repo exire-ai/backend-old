@@ -104,7 +104,7 @@ var getByRegions = async function (regions, callback) {
 }
 
 var ensureNoOverlap = async function (venues, callback) {
-  twentyMeters = .002;
+  twentyMeters = .004;
   console.log(venues.length)
   rangeList = [];
   for ( elem in  venues) {
