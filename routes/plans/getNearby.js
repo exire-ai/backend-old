@@ -117,11 +117,13 @@ var ensureNoOverlap = async function (lat, lon, venues, callback) {
     for ( dict in rangeList ) {
       if (venues[elem].latitude >= rangeList[dict].latitudeSouth && venues[elem].latitude <= rangeList[dict].latitudeNorth) {
         if (venues[elem].longitude <= rangeList[dict].longitudeEast && venues[elem].longitude >= rangeList[dict].longitudeWest) {
+          console.log("-", venues[elem].title)
           var bool = false;
         }
       }
     }
     if (bool) {
+      console.log("+", venues[elem].title)
       rangeList.push({
         "latitudeNorth" : venues[elem].latitude + radius,
         "latitudeSouth" : venues[elem].latitude - radius,
