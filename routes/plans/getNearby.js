@@ -106,11 +106,12 @@ var getByRegions = async function (regions, callback) {
 var ensureNoOverlap = async function (lat, lon, venues, callback) {
   radius = .004;
   rangeList = [{
-    "latitudeNorth" : lat + radius,
+    "latitudeNorth" : parseFloat(lat) + radius,
     "latitudeSouth" : lat - radius,
     "longitudeWest" : lon - radius,
-    "longitudeEast" : lon + radius
+    "longitudeEast" : parseFloat(lon) + radius
   }];
+  console.log(rangeList)
   for ( elem in  venues) {
     var bool = true
     for ( dict in rangeList ) {
