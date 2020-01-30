@@ -81,28 +81,28 @@ var getRequest = async function (category, callback) {
           placeID = placeID.replace(".", '');
           try {
             date = obj2["dates"]["start"]["dateTime"]
+            var tempObj = {
+            	'placeID' : placeID,
+            	'title' : title,
+            	'description' : "temp",
+            	'tips' : "temp",
+            	'category' : "temp",
+            	'subcategory' : "temp",
+            	'type' : "temp",
+            	'imgURL' : "temp",
+              'startUNIX' : "temp",
+            	'latitude' : lat,
+            	'longitude' : lon,
+            	'cost' : obj2["priceRanges"][0]["min"],
+            	'tag' : "",
+              'ticketURL' : obj2["url"]
+            };
+            tempList.push(tempObj)
+            // console.log(tempObj)
           }
           catch (e) {
-            continue;
+            console.log(obj2)
           }
-          var tempObj = {
-          	'placeID' : placeID,
-          	'title' : title,
-          	'description' : "temp",
-          	'tips' : "temp",
-          	'category' : "temp",
-          	'subcategory' : "temp",
-          	'type' : "temp",
-          	'imgURL' : "temp",
-            'startUNIX' : "temp",
-          	'latitude' : lat,
-          	'longitude' : lon,
-          	'cost' : obj2["priceRanges"][0]["min"],
-          	'tag' : "",
-            'ticketURL' : obj2["url"]
-          };
-          tempList.push(tempObj)
-          // console.log(tempObj)
         });
       }
       callback(tempList);
