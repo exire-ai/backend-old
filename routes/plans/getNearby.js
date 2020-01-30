@@ -103,33 +103,32 @@ var getByRegions = async function (regions, callback) {
   })
 }
 
-var ensureNoOverlap = async function (venues, callback) {
-  twentyMeters = .004;
-  console.log(venues.length)
-  rangeList = [];
+var ensureNoOverlap = async function (lat, lon, venues, callback) {
+  radius = .004;
+  rangeList = [{
+    "latitudeNorth" : lat + radius,
+    "latitudeSouth" : lat - radius,
+    "longitudeWest" : lon - radius,
+    "longitudeEast" : lon + radius
+  }];
   for ( elem in  venues) {
     var bool = true
     for ( dict in rangeList ) {
-      console.log(rangeList[dict].latitudeSouth, rangeList[dict].latitudeNorth, rangeList[dict].longitudeWest, rangeList[dict].longitudeEast)
-      // console.log(rangeList[dict].longitudeEast, " > ", rangeList[dict].longitudeWest)
       if (venues[elem].latitude >= rangeList[dict].latitudeSouth && venues[elem].latitude <= rangeList[dict].latitudeNorth) {
         if (venues[elem].longitude <= rangeList[dict].longitudeEast && venues[elem].longitude >= rangeList[dict].longitudeWest) {
-          console.log("Works!")
           var bool = false;
         }
       }
     }
     if (bool) {
       rangeList.push({
-        "latitudeNorth" : venues[elem].latitude + twentyMeters,
-        "latitudeSouth" : venues[elem].latitude - twentyMeters,
-        "longitudeWest" : venues[elem].longitude - twentyMeters,
-        "longitudeEast" : venues[elem].longitude + twentyMeters
+        "latitudeNorth" : venues[elem].latitude + radius,
+        "latitudeSouth" : venues[elem].latitude - radius,
+        "longitudeWest" : venues[elem].longitude - radius,
+        "longitudeEast" : venues[elem].longitude + radius
       });
     }
   }
-
-  console.log(rangeList.length)
   callback(venues)
 }
 
@@ -146,7 +145,7 @@ module.exports = async function (req, res) {
   }
   getRegions(req.params.lat, req.params.lon, radius, function(regions) {
     getByRegions(regions, function(inRegions) {
-      ensureNoOverlap(inRegions, function(noOverlap) {
+      ensureNoOverlap(req.params.lat, req.params.lon, inRegions, function(noOverlap) {
         var tempInRegions = []
         for (elem in noOverlap) {
           noOverlap[elem]["category"] = categoryDict[noOverlap[elem]["subcategory"]]
