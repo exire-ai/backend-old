@@ -131,7 +131,7 @@ var ensureNoOverlap = async function (lat, lon, venues, callback) {
         "longitudeWest" : venues[elem].longitude - radius,
         "longitudeEast" : venues[elem].longitude + radius
       });
-      tempList.push(elem);
+      tempList.push(venues[elem]);
     }
   }
   callback(tempList)
