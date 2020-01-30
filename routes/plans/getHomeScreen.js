@@ -516,11 +516,11 @@ module.exports = async function (req, res) {
                 {
                   title: "Community favorites",
                   data: shuffle(communityFavorites)
-                },
-                {
-                  title: "Events",
-                  data: shuffle(events)
                 }
+                // {
+                //   title: "Events",
+                //   data: shuffle(events)
+                // }
               ])
             });
           });
