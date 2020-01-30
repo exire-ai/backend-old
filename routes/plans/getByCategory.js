@@ -54,7 +54,7 @@ module.exports = async function (req, res) {
   }
   getVenues(req.params.category, function(venues) {
     getEvents(req.params.category, function(events) {
-      var result = venues.concat(venues)
+      var result = venues.concat(events)
       res.json(result)
     });
   });

@@ -32,7 +32,7 @@ var getEvents = async function (ids, callback) {
 module.exports = async function (req, res) {
   getVenues(req.body.ids, function(venues) {
     getEvents(req.body.ids, function(events) {
-      var result = venues.concat(venues)
+      var result = venues.concat(events)
       res.json(result)
     });
   });
