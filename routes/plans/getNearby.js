@@ -96,11 +96,41 @@ var getByRegions = async function (regions, callback) {
     region: { $in: regions }
   }, {
     _id: 0
-  }).limit(10).then(result => {
+  }).limit(100).then(result => {
     callback(result)
   }).catch(err => {
     callback([]);
   })
+}
+
+var ensureNoOverlap = async function (venues, callback) {
+  twentyMeters = .002;
+  console.log(venues.length)
+  rangeList = [];
+  for ( elem in  venues) {
+    var bool = true
+    for ( dict in rangeList ) {
+      console.log(rangeList[dict].latitudeSouth, rangeList[dict].latitudeNorth, rangeList[dict].longitudeWest, rangeList[dict].longitudeEast)
+      // console.log(rangeList[dict].longitudeEast, " > ", rangeList[dict].longitudeWest)
+      if (venues[elem].latitude >= rangeList[dict].latitudeSouth && venues[elem].latitude <= rangeList[dict].latitudeNorth) {
+        if (venues[elem].longitude <= rangeList[dict].longitudeEast && venues[elem].longitude >= rangeList[dict].longitudeWest) {
+          console.log("Works!")
+          var bool = false;
+        }
+      }
+    }
+    if (bool) {
+      rangeList.push({
+        "latitudeNorth" : venues[elem].latitude + twentyMeters,
+        "latitudeSouth" : venues[elem].latitude - twentyMeters,
+        "longitudeWest" : venues[elem].longitude - twentyMeters,
+        "longitudeEast" : venues[elem].longitude + twentyMeters
+      });
+    }
+  }
+
+  console.log(rangeList.length)
+  callback(venues)
 }
 
 module.exports = async function (req, res) {
@@ -116,11 +146,13 @@ module.exports = async function (req, res) {
   }
   getRegions(req.params.lat, req.params.lon, radius, function(regions) {
     getByRegions(regions, function(inRegions) {
-      var tempInRegions = []
-      for (elem in inRegions) {
-        inRegions[elem]["category"] = categoryDict[inRegions[elem]["subcategory"]]
-      }
-      res.json(inRegions)
+      ensureNoOverlap(inRegions, function(noOverlap) {
+        var tempInRegions = []
+        for (elem in noOverlap) {
+          noOverlap[elem]["category"] = categoryDict[noOverlap[elem]["subcategory"]]
+        }
+        res.json(noOverlap)
+      })
     });
   });
 }
