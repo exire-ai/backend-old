@@ -168,11 +168,11 @@ module.exports = async function (req, res) {
   if(!req.params.lon) {
     return res.status(400).send('Missing lon')
   }
-  var radius = 2
+  var radius = 3
   if(req.query.radius) {
     radius = req.query.radius
   }
-  getRegions(req.params.lat, req.params.lon, 3, function(regions) {
+  getRegions(req.params.lat, req.params.lon, 4, function(regions) {
     getByRegions(regions, function(inRegions) {
       ensureNoOverlap(req.params.lat, req.params.lon, inRegions, radius, function(noOverlap) {
         var tempInRegions = []
