@@ -7,6 +7,25 @@ let modelDict = require('../models/schema').modelDict;
 
 // Food, Visual, Active, Alcohol, Sports, Musical, Treats
 
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 var categoryDict =       {
   "poke" : "food",
   "barbeque" : "food",
@@ -96,14 +115,15 @@ var getByRegions = async function (regions, callback) {
     region: { $in: regions }
   }, {
     _id: 0
-  }).limit(50).then(result => {
+  }).limit(200).then(result => {
     callback(result)
   }).catch(err => {
     callback([]);
   })
 }
 
-var ensureNoOverlap = async function (lat, lon, venues, callback) {
+var ensureNoOverlap = async function (lat, lon, venues, ogRadius, callback) {
+  venues = shuffle(venues);
   radius = .003;
   tempList = []
   rangeList = [{
@@ -114,6 +134,10 @@ var ensureNoOverlap = async function (lat, lon, venues, callback) {
   }];
   console.log(rangeList)
   for ( elem in  venues) {
+    if (ogRadius <= distance(lat, lon, venues[elem].latitude, venues[elem].longitude)) {
+      console.log(venues[elem].title, distance(lat, lon, venues[elem].latitude, venues[elem].longitude))
+      continue;
+    }
     var bool = true
     for ( dict in rangeList ) {
       if (venues[elem].latitude >= rangeList[dict].latitudeSouth && venues[elem].latitude <= rangeList[dict].latitudeNorth) {
@@ -144,13 +168,13 @@ module.exports = async function (req, res) {
   if(!req.params.lon) {
     return res.status(400).send('Missing lon')
   }
-  var radius = 2
+  var radius = 1
   if(req.query.radius) {
     radius = req.query.radius
   }
   getRegions(req.params.lat, req.params.lon, radius, function(regions) {
     getByRegions(regions, function(inRegions) {
-      ensureNoOverlap(req.params.lat, req.params.lon, inRegions, function(noOverlap) {
+      ensureNoOverlap(req.params.lat, req.params.lon, inRegions, radius, function(noOverlap) {
         var tempInRegions = []
         for (elem in noOverlap) {
           noOverlap[elem]["category"] = categoryDict[noOverlap[elem]["subcategory"]]
