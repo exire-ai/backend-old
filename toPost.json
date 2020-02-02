@@ -1,71 +1,5 @@
 [
   {
-    "title": "Mercado Little Spain",
-    "description": "Spanish food market from Jose Andres & Adria brothers with restaurants & kiosks.",
-    "category": "food",
-    "subcategory": "markets",
-    "imgURL": "https://cdn.vox-cdn.com/thumbor/dEuSz1-OUahL6sBgDztnPI_1BN4=/0x0:5760x3840/1200x800/filters:focal(2420x1460:3340x2380)/cdn.vox-cdn.com/uploads/chorus_image/image/63309266/Mercado_Little_Spain_1.0.jpg",
-    "region": "Chelsea",
-    "open": 7,
-    "closed": 23,
-    "closed_days": [],
-    "latitude": 40.753019,
-    "longitude": -74.001915,
-    "cost": 15,
-    "rank": 4.3,
-    "accessURL": "littlespan.com"
-  },
-  {
-    "title": "Rose Bar",
-    "description": "Exclusive, hotel bar with a firepklace, solid walnut var & Andy Warhol art on the wall.",
-    "category": "alcohol",
-    "subcategory": "cocktails",
-    "imgURL": "https://www.gramercyparkhotel.com/media/W1siZiIsInBob3Rvc2V0L2dwaC01YzBmYTA0Yy1Sb3NlQmFyMjAxN19MaXNhS2F0b1Bob3RvZ3JhcGh5X0xvd1Jlcy5qcGciXV0",
-    "region": "Flatiron",
-    "open": 12,
-    "closed": 28,
-    "closed_days": [],
-    "latitude": 40.738569,
-    "longitude": -73.985894,
-    "cost": 65,
-    "rank": 3.9,
-    "accessURL": "gramercyparkhotel.com"
-  },
-  {
-    "title": "Bemelmans Bar",
-    "description": "The Carlyle Hotel's Sophiscated, upscale piano bar, adorned with Ludwig Bemelmans' famed murals.",
-    "category": "alcohol",
-    "subcategory": "bars",
-    "imgURL": "https://static01.nyt.com/images/2019/12/20/t-magazine/entertainment/20-tmag-bemelmans-slide-DTPP/20-tmag-bemelmans-slide-DTPP-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
-    "region": "Upper East Side",
-    "open": 12,
-    "closed": 24.5,
-    "closed_days": [],
-    "latitude": 40.774638,
-    "longitude": -73.963171,
-    "cost": 58,
-    "rank": 4.5,
-    "accessURL": "https://www.rosewoodhotels.com/en/the-carlyle-new-york/overview/destination/entertainment-at-the-carlyle"
-  },
-  {
-
-    "title": "Le Bernardin",
-    "description": "Elite French restaurant offers Eric Ripert's refined seafood, expert service & luxurious decor.",
-    "category": "food",
-    "subcategory": "french",
-    "imgURL": "https://www.le-bernardin.com/content/slides/lb-gallery-main.jpg",
-    "region": "Midtown",
-    "open": 17.25,
-    "closed": 22.5,
-    "closed_days": ["sunday"],
-    "latitude": 40.761576,
-    "longitude": -73.981804,
-    "cost": 110,
-    "rank": 4.7,
-    "accessURL": "https://resy.com/cities/ny/le-bernardin?date=2020-01-30&seats=2"
-  },
-  {
-
     "title": "Sevilla",
     "description": "",
     "category": "",
@@ -82,7 +16,6 @@
     "accessURL": ""
   },
   {
-
     "title": "Auction House",
     "description": "",
     "category": "",
