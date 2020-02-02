@@ -135,7 +135,6 @@ var ensureNoOverlap = async function (lat, lon, venues, ogRadius, callback) {
   console.log(rangeList)
   for ( elem in  venues) {
     if (ogRadius <= distance(lat, lon, venues[elem].latitude, venues[elem].longitude)) {
-      console.log(venues[elem].title, distance(lat, lon, venues[elem].latitude, venues[elem].longitude))
       continue;
     }
     var bool = true
@@ -155,9 +154,12 @@ var ensureNoOverlap = async function (lat, lon, venues, ogRadius, callback) {
         "longitudeWest" : venues[elem].longitude - radius,
         "longitudeEast" : venues[elem].longitude + radius
       });
+      venues[elem]["__v"] = distance(lat, lon, venues[elem].latitude, venues[elem].longitude);
+      console.log(lat, lon, venues[elem].latitude, venues[elem].longitude, venues[elem]["__v"], venues[elem])
       tempList.push(venues[elem]);
     }
   }
+  tempList.sort((a,b) => (a["__v"] > b["__v"]) ? 1: -1)
   callback(tempList)
 }
 
