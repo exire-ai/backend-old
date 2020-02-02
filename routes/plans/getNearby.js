@@ -155,12 +155,23 @@ var ensureNoOverlap = async function (lat, lon, venues, ogRadius, callback) {
         "longitudeEast" : venues[elem].longitude + radius
       });
       venues[elem]["__v"] = distance(lat, lon, venues[elem].latitude, venues[elem].longitude);
-      console.log(lat, lon, venues[elem].latitude, venues[elem].longitude, venues[elem]["__v"], venues[elem])
-      tempList.push(venues[elem]);
+      if (venues[elem]["__v"] < ogRadius) {
+        tempList.push(venues[elem]);
+      }
     }
   }
   tempList.sort((a,b) => (a["__v"] > b["__v"]) ? 1: -1)
   callback(tempList)
+}
+
+var checkPrice = async function (price, venues, callback) {
+  var tempList = [];
+  for (elem in venues) {
+    if (venues[elem].cost < price) {
+      tempList.push(venues[elem]);
+    }
+  }
+  callback(tempList);
 }
 
 module.exports = async function (req, res) {
@@ -170,18 +181,24 @@ module.exports = async function (req, res) {
   if(!req.params.lon) {
     return res.status(400).send('Missing lon')
   }
-  var radius = 3
+  var radius = 2
   if(req.query.radius) {
     radius = req.query.radius
   }
-  getRegions(req.params.lat, req.params.lon, 4, function(regions) {
+  var price = 500;
+  if(req.query.price) {
+    price = req.query.price;
+  }
+  getRegions(req.params.lat, req.params.lon, 5, function(regions) {
     getByRegions(regions, function(inRegions) {
       ensureNoOverlap(req.params.lat, req.params.lon, inRegions, radius, function(noOverlap) {
-        var tempInRegions = []
-        for (elem in noOverlap) {
-          noOverlap[elem]["category"] = categoryDict[noOverlap[elem]["subcategory"]]
-        }
-        res.json(noOverlap)
+        checkPrice(price, noOverlap, function(finalResult) {
+          var tempInRegions = []
+          for (elem in finalResult) {
+            noOverlap[elem]["category"] = categoryDict[finalResult[elem]["subcategory"]]
+          }
+          res.json(finalResult)
+        })
       })
     });
   });
