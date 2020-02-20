@@ -12,7 +12,8 @@ const UserSchema = new mongoose.Schema({
 	'deviceID' : { type: String, default: "" },
 	'categories' : { type: Array, default: [] },
 	'plans' : { type: Array, default: [] },
-	'saved' : { type: Array, default: [] }
+	'saved' : { type: Array, default: [] },
+	'chatID' : { type: String, default: "" }
 });
 
 module.exports = UserSchema;

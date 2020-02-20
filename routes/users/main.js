@@ -31,5 +31,9 @@ module.exports.clearPlans = require('./clearPlans');
 module.exports.addPlans = require('./addPlans');
 module.exports.addPlan = require('./addPlan');
 
+// User chats
+module.exports.getChat = require('./getChat');
+module.exports.updateChat = require('./updateChat');
+
 // User token
 module.exports.updateToken = require('./updateToken');

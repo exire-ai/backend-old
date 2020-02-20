@@ -35,6 +35,10 @@ router.get('/clearPlans/:userID', users.clearPlans);
 router.post('/addPlans/:userID', users.addPlans);
 router.get('/addPlan/:userID/:planID', users.addPlan);
 
+//User chats
+router.get('/getChat/:userID', users.getChat);
+router.get('/updateChat/:userID/:chatID', users.updateChat);
+
 // User token
 router.get('/updateToken/:userID/:newToken', users.updateToken);
 

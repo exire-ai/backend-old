@@ -10,5 +10,6 @@ let external = require('./external/main');
 // Login / Homescreen
 router.get('/getTicketMaster/:category', external.getTicketMaster);
 router.get('/sendText/:userID', external.sendText);
+router.get('/sendLink/:phoneNumber', external.sendLink);
 
 module.exports = router;
