@@ -4,6 +4,7 @@ For exire.ai
 #################################################*/
 
 let modelDict = require('../models/schema').modelDict;
+let pushInternal = require('../notifications/pushInternal');
 
 module.exports = async function (req, res) {
   if(!req.params.chatID) {
@@ -26,19 +27,27 @@ module.exports = async function (req, res) {
         "chat" : result.chat
       }, {
         _id : 0
-      }).then(result => {
-        if (result.n == 1) {
-          res.json(true)
+      }).then(result2 => {
+        if (result2.n == 1) {
+          if (result.userID == req.body.senderID) {
+            pushInternal(null, true, true, function(result){
+              res.json(result);
+            });
+          } else {
+            pushInternal(result.userID, false, true, function(result){
+              res.json(result);
+            });
+          };
         } else {
-          res.json(false)
-        }
+          res.json(false);
+        };
       }).catch(err => {
-        res.status(500).json(err)
-      })
+        res.status(500).json(err);
+      });
     } else {
       res.json(false);
-    }
+    };
   }).catch(err => {
-    res.status(500).json(err)
-  })
-}
+    res.status(500).json(err);
+  });
+};
