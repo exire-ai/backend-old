@@ -19,8 +19,8 @@ var getVenues = async function (ids, callback) {
 
 module.exports = async function (req, res) {
   if(!req.params.chatID) {
-    return res.status(400).send('Missing chatID')
-  }
+    return res.status(400).send('Missing chatID');
+  };
   modelDict.chat.findOne({
     "chatID" : req.params.chatID
   }, {
@@ -42,9 +42,9 @@ module.exports = async function (req, res) {
         res.json(result);
       });
     } else {
-      res.json(false)
+      res.json(false);
     };
   }).catch(err => {
-    res.status(500).json(err)
+    res.status(500).json(err);
   });
 };

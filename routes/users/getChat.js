@@ -20,6 +20,18 @@ var generateID = async function (callback) {
   })
 }
 
+var getVenues = async function (ids, callback) {
+  modelDict.venue.find({
+    placeID: { $in: ids }
+  }, {
+    _id: 0
+  }).then(result => {
+    callback(result);
+  }).catch(err => {
+    callback([]);
+  })
+}
+
 module.exports = async function (req, res) {
   if(!req.params.userID) {
     return res.status(400).send('Missing userID')
@@ -29,7 +41,6 @@ module.exports = async function (req, res) {
   }, {
     _id : 0
   }).then(userResult => {
-    console.log(userResult)
     if (userResult != null) {
       modelDict.chat.findOne({
         chatID: userResult.chatID
@@ -37,7 +48,20 @@ module.exports = async function (req, res) {
         _id: 0
       }).then(result => {
         if (result) {
-          res.json(result);
+          tempArray = []
+          for (message in result.chat) {
+            for (index in result.chat[message].venues) {
+              tempArray.push(result.chat[message].venues[index])
+            }
+          }
+          getVenues(tempArray, function(data) {
+            for (message in result.chat) {
+              for (index in result.chat[message].venues) {
+                result.chat[message].venues[index] = data.find(x => x.placeID === result.chat[message].venues[index]);
+              };
+            };
+            res.json(result);
+          });
         } else {
 
 // NEED TO APPLY SOME DESIGN PATTERNS AND SIMPLIFY
