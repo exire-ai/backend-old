@@ -41,7 +41,7 @@ module.exports = async function (req, res) {
   }, {
     _id : 0
   }).then(userResult => {
-    if (userResult.chatID != null) {
+    if (userResult != null) {
       modelDict.chat.findOne({
         chatID: userResult.chatID
       }, {
