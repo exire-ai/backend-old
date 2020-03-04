@@ -30,7 +30,7 @@ module.exports = async function (req, res) {
       }).then(result2 => {
         if (result2.n == 1) {
           if (result.userID == req.body.senderID) {
-            pushInternal2(result.userID, true, false, "New Message", "From: " + result.userID, function(data) {
+            pushInternal2(result.userID, true, false, "New Message", req.body.message + " FROM " + result.userID, function(data) {
               res.json(data);
             });
           } else {
