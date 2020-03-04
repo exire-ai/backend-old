@@ -21,12 +21,10 @@ module.exports = async function (req, res) {
   modelDict.chat.find({}, {
     _id: 0
   }).then(result => {
-    console.log(result)
     tempArray = [];
     for (chat in result) {
       for (message in result[chat].chat) {
         for (index in result[chat].chat[message].venues) {
-          console.log(result[chat].chat[message].venues[index])
           tempArray.push(result[chat].chat[message].venues[index]);
         };
       };

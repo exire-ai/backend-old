@@ -35,10 +35,10 @@ module.exports = async function (req, res) {
           //   // });
           //   res.json(true);
           // } else {
-          //   // pushInternal(result.userID, false, true, function(result){
-          //   //   res.json(result);
-          //   // });
-          //   res.json(false);
+          //   console.log(result.userID)
+          //   pushInternal(result.userID, false, true, function(result){
+          //     res.json(result);
+          //   });
           // };
           res.json(true);
         } else {

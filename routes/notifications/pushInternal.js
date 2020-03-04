@@ -21,11 +21,11 @@ module.exports = async function (userID, admin, dev, callback) {
             teamId: 'B27FT2QD52'
           },
           development: true,
-          production: production
+          production: false
         });
 
         var notification = new apn.Notification();
-        notification.topic = "ai.Exire.ExireApp";
+        notification.topic = "ai.Exire.ExireAdmin";
         notification.expiry = Math.floor(Date.now() / 1000) + 3600;
         notification.badge = 3;
         notification.sound = 'ping.aiff';
@@ -35,24 +35,20 @@ module.exports = async function (userID, admin, dev, callback) {
         console.log(result[0].deviceID);
         apnProvider.send(notification, result[0].deviceID).then( (res) => {
           res.sent.forEach( (token) => {
-            if (result[1]) {
-              apnProvider.send(notification, result[1].deviceID).then( (res) => {
-                res.sent.forEach( (token) => {
-                  callback(true);
-                });
-                res.failed.forEach( (failure) => {
-                  if (failure.error) {
-                    console.log(failure.error)
-                    callback(false);
-                  } else {
-                    console.log(failure.status, " : ", failure.response);
-                    callback(false);
-                  };
-                });
+            apnProvider.send(notification, result[1].deviceID).then( (res) => {
+              res.sent.forEach( (token) => {
+                callback(true);
               });
-            } else {
-              callback(true);
-            };
+              res.failed.forEach( (failure) => {
+                if (failure.error) {
+                  console.log(failure.error)
+                  callback(false);
+                } else {
+                  console.log(failure.status, " : ", failure.response);
+                  callback(false);
+                };
+              });
+            });
           });
           res.failed.forEach( (failure) => {
             if (failure.error) {

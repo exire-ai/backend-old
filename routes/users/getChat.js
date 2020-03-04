@@ -41,7 +41,7 @@ module.exports = async function (req, res) {
   }, {
     _id : 0
   }).then(userResult => {
-    if (userResult != null) {
+    if (userResult.chatID != null) {
       modelDict.chat.findOne({
         chatID: userResult.chatID
       }, {
@@ -63,9 +63,6 @@ module.exports = async function (req, res) {
             res.json(result);
           });
         } else {
-
-// NEED TO APPLY SOME DESIGN PATTERNS AND SIMPLIFY
-
           generateID(function(chatID) {
             body = {
               "chatID" : chatID,
