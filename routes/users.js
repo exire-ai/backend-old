@@ -44,5 +44,6 @@ router.get('/updateToken/:userID/:newToken', users.updateToken);
 
 // Number lookup
 router.get('/doesNumberExist/:number', users.doesNumberExist);
+router.get('/getByNumber/:number', users.getByNumber);
 
 module.exports = router;
