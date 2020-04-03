@@ -37,3 +37,6 @@ module.exports.updateChat = require('./updateChat');
 
 // User token
 module.exports.updateToken = require('./updateToken');
+
+// Number lookup
+module.exports.doesNumberExist = require('./doesNumberExist');

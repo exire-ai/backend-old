@@ -42,4 +42,7 @@ router.get('/updateChat/:userID/:chatID', users.updateChat);
 // User token
 router.get('/updateToken/:userID/:newToken', users.updateToken);
 
+// Number lookup
+router.get('/doesNumberExist/:number', users.doesNumberExist);
+
 module.exports = router;
