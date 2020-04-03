@@ -11,5 +11,6 @@ let external = require('./external/main');
 router.get('/getTicketMaster/:category', external.getTicketMaster);
 router.get('/sendText/:userID', external.sendText);
 router.get('/sendLink/:phoneNumber', external.sendLink);
+router.get('/phoneAuth/:phoneNumber', external.phoneAuth);
 
 module.exports = router;
