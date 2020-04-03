@@ -44,7 +44,7 @@ allCategories = [
       {
         "title" : "Italian",
         "code" : "italian",
-        "url" : "https://serafinamia.com/wp-content/uploads/2018/09/10-Italian-Fun-Facts-The-Food-Fashion-and-Culture-of-Italy.jpg"
+        "url" : "https://bstatic.com/xdata/images/xphoto/1182x887/68794608.jpg?k=155689446d1aa48adbda2d0977fcd6d7608a9f9151562b5055f4baa366583eed&o=?size=S"
       },
       {
         "title" : "Japanese",
