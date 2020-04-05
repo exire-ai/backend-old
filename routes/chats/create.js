@@ -10,7 +10,7 @@ var generateID = async function (callback) {
   modelDict.chat.findOne({
     "chatID" : chatID
   }).then(result => {
-    if (result !== null) {
+    if (result != null) {
       generateID(function(result) {
         callback(result);
       })
