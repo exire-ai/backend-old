@@ -10,6 +10,9 @@ module.exports.update = require("./update");
 module.exports.doesExist = require("./doesExist");
 module.exports.delete = require("./delete");
 
+//User Profile
+module.exports.updateName = require("./updateName");
+
 // User categories
 module.exports.getCategories = require("./getCategories");
 module.exports.updateCategories = require("./updateCategories");

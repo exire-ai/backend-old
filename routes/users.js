@@ -14,6 +14,9 @@ router.post("/update/:userID", users.update);
 router.get("/doesExist/:userID", users.doesExist);
 router.get("/delete/:userID", users.delete);
 
+//User Profile
+router.post("/updateName/:userID/:name", users.updateName);
+
 // User categories
 router.get("/getCategories/:userID", users.getCategories);
 router.post("/updateCategories/:userID", users.updateCategories);
