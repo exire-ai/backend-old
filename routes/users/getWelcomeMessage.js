@@ -22,7 +22,7 @@ module.exports = async function (req, res) {
       var base = "Welcome to Exire! ";
       if (result != null) {
         if (result.name != "" && result.name != null) {
-          base = "Hello " + result.name + ", my name is Emma! ";
+          base = "Hello " + result.name + ", my name is Emma. ";
         }
       }
       res.json({
