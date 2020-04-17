@@ -13,7 +13,7 @@ const client = require('twilio')(accountSid, authToken);
 
 var sendText = (number, callback) => {
   client.messages.create({
-     body: "Hello, Welcome to Exire! Get started planning your dream night out by downloading the app through Testflight at https://testflight.apple.com/join/7MCvUAIq",
+     body: "Hello, Welcome to Exire! Get started planning your dream night out by downloading the app through Testflight at https://testflight.apple.com/join/8WfE9zq2",
      from: '+14243469443',
      to: number
    })
