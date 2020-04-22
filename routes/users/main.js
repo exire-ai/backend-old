@@ -45,3 +45,6 @@ module.exports.updateToken = require("./updateToken");
 // Number lookup
 module.exports.doesNumberExist = require("./doesNumberExist");
 module.exports.getByNumber = require("./getByNumber");
+
+// Location
+module.exports.updateLocation = require("./updateLocation");

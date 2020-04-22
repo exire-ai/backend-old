@@ -50,4 +50,7 @@ router.get("/updateToken/:userID/:newToken", users.updateToken);
 router.get("/doesNumberExist/:number", users.doesNumberExist);
 router.get("/getByNumber/:number", users.getByNumber);
 
+// Location
+router.get("/updateLocation/:userID/:lat/:lon", users.updateLocation);
+
 module.exports = router;
