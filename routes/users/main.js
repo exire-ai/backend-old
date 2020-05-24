@@ -48,3 +48,8 @@ module.exports.getByNumber = require("./getByNumber");
 
 // Location
 module.exports.updateLocation = require("./updateLocation");
+
+// users
+module.exports.getFriends = require("./getFriends");
+module.exports.deleteFriend = require("./deleteFriend");
+module.exports.addFriend = require("./addFriend");

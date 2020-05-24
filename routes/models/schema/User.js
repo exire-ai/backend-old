@@ -13,6 +13,7 @@ const UserSchema = new mongoose.Schema({
 	'categories' : { type: Array, default: [] },
 	'plans' : { type: Array, default: [] },
 	'saved' : { type: Array, default: [] },
+	'friends' : { type: Array, default: [] },
 	'chatID' : { type: String, default: "" },
 	'lat' : { type: Number, default: 0},
 	'lon' : { type: Number, default: 0},

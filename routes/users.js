@@ -53,4 +53,9 @@ router.get("/getByNumber/:number", users.getByNumber);
 // Location
 router.get("/updateLocation/:userID/:lat/:lon", users.updateLocation);
 
+//friends
+router.get("/getFriends/:userID", users.getFriends);
+router.get("/deleteFriend/:userID/:otherUserID", users.deleteFriend);
+router.get("/addFriend/:userID/:otherUserID", users.addFriend);
+
 module.exports = router;
