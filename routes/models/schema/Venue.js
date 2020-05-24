@@ -25,7 +25,9 @@ const VenueSchema = new mongoose.Schema({
 	'peopleWatching' : { type: Number, default: 0 },
 	'linkClicks' : { type: Number, default: 0 },
 	'tag' : { type: String, default: "" },
-	'accessURL' : { type: String, default: "" }
+	'accessURL' : { type: String, default: "" },
+	'businessID' : { type: String, default: ""},
+	'times' : { type: Array, default: []}
 });
 
 module.exports = VenueSchema;

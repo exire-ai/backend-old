@@ -12,6 +12,7 @@ module.exports.delete = require("./delete");
 module.exports.update = require("./update");
 
 module.exports.getByCategory = require("./getByCategory");
+module.exports.getByHierCategory = require("./getByHierCategory");
 module.exports.getFoodRecommended = require("./getFoodRecommended");
 module.exports.getActivityRecommended = require("./getActivityRecommended");
 module.exports.getRecommended = require("./getRecommended");

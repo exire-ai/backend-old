@@ -18,6 +18,7 @@ router.get("/delete/:planID", plans.delete);
 router.post("/update/:planID", plans.update);
 
 router.get("/getByCategory/:category", plans.getByCategory);
+router.get("/getByHierCategory/:category", plans.getByHierCategory);
 router.get("/getRecommended/:userID", plans.getRecommended);
 router.get("/getFoodRecommended/:userID", plans.getFoodRecommended);
 router.get("/getActivityRecommended/:userID", plans.getActivityRecommended);
