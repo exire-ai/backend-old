@@ -20,7 +20,7 @@ module.exports = async function (req, res) {
     if (result != null) {
       var originalLength = result.friends.length
       for (var i = 0; i < originalLength; i++) {
-        if (result.friends[i].userID == req.params.otherUserID) {
+        if (result.friends[i] == req.params.otherUserID) {
           result.friends.splice(i, 1);
           break;
         }
