@@ -30,6 +30,9 @@ var getVenues = async function (category, callback) {
   }, {
     _id: 0
   }).then(result => {
+    for (i in result) {
+      result[i].rank = 60 + 6*result[i].rank + Math.floor(Math.random() * Math.floor(10))
+    }
     callback(result);
   }).catch(err => {
     callback([]);
