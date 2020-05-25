@@ -19,6 +19,7 @@
     "mongoose": "^5.9.7",
     "morgan": "~1.9.1",
     "sentence-tokenizer": "^1.0.1",
+    "stripe": "^8.55.0",
     "twilio": "^3.42.1"
   }
 }
