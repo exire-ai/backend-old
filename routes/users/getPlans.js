@@ -67,26 +67,27 @@ module.exports = async function (req, res) {
           )
           .then((result) => {
             if (!req.query.populate) {
-              console.log(result[0].bookings);
               res.json(result);
             } else {
               var tempList = [];
               for (elem in result) {
                 tempList = tempList.concat(result[elem].bookings);
-                tempList = tempList.map((a) => a.venueID);
+                tempList = tempList.map((a) => a.eventID);
               }
+              console.log(tempList);
               getVenues(tempList, function (venueData) {
                 getEvents(tempList, function (eventData) {
                   data = venueData.concat(eventData);
-                  // console.log(data);
+
                   for (elem in result) {
-                    console.log(result[elem]["bookings"]);
                     for (j in result[elem]["bookings"]) {
-                      console.log(result[elem]["bookings"][j]);
                       result[elem]["bookings"][j]["venue"] = data.find(
                         (x) =>
+                          x.eventID ===
+                            result[elem]["bookings"][j]["eventID"] ||
                           x.placeID === result[elem]["bookings"][j]["venueID"]
                       );
+                      console.log(result[elem]["bookings"][j]["venue"]);
                     }
                   }
                   res.json(result);
