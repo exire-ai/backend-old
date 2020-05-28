@@ -71,23 +71,38 @@ module.exports = async function (req, res) {
             } else {
               var tempList = [];
               for (elem in result) {
-                tempList = tempList.concat(result[elem].bookings);
-                tempList = tempList.map((a) => a.eventID);
+                tempList.push.apply(
+                  tempList,
+                  result[elem].bookings.map((a) => a.eventID)
+                );
               }
-              console.log(tempList);
               getVenues(tempList, function (venueData) {
                 getEvents(tempList, function (eventData) {
                   data = venueData.concat(eventData);
+                  // console.log(data);
 
                   for (elem in result) {
                     for (j in result[elem]["bookings"]) {
-                      result[elem]["bookings"][j]["venue"] = data.find(
-                        (x) =>
-                          x.eventID ===
-                            result[elem]["bookings"][j]["eventID"] ||
-                          x.placeID === result[elem]["bookings"][j]["venueID"]
-                      );
-                      console.log(result[elem]["bookings"][j]["venue"]);
+                      for (p in data) {
+                        console.log(data[p]["eventID"]);
+                        console.log(result[elem]["bookings"][j]["eventID"]);
+                        if (
+                          data[p]["eventID"] ===
+                          result[elem]["bookings"][j]["eventID"]
+                        ) {
+                          result[elem]["bookings"][j]["venue"] = data[p];
+                        }
+                      }
+                      //TODO: Will have to update when incorporating venueIDs / eventIDs
+                      // result[elem]["bookings"][j]["venue"] = data.find(
+                      //   (x) =>
+                      //     (x.eventID ===
+                      //       result[elem]["bookings"][j]["eventID"] &&
+                      //       result[elem]["bookings"[j]["eventID"] != null]) ||
+                      //     (x.placeID ===
+                      //       result[elem]["bookings"][j]["venueID"] &&
+                      //       result[elem]["bookings"][j]["venueID"] != null)
+                      // );
                     }
                   }
                   res.json(result);

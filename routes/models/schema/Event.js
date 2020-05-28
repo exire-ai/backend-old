@@ -6,7 +6,7 @@ For exire.ai
 let mongoose = require("mongoose");
 
 const EventSchema = new mongoose.Schema({
-  placeID: { type: String, default: "" },
+  eventID: { type: String, default: "" },
   title: { type: String, default: "" },
   description: { type: String, default: "" },
   tips: { type: String, default: "" },
