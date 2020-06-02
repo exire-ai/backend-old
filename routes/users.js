@@ -45,6 +45,7 @@ router.get("/getWelcomeMessage/:userID", users.getWelcomeMessage);
 
 // User token
 router.get("/updateToken/:userID/:newToken", users.updateToken);
+router.get("/updateExpoPushToken/:userID/:token", users.updateExpoPushToken);
 
 // Number lookup
 router.get("/doesNumberExist/:number", users.doesNumberExist);

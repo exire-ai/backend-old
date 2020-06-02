@@ -41,6 +41,7 @@ module.exports.getWelcomeMessage = require("./getWelcomeMessage");
 
 // User token
 module.exports.updateToken = require("./updateToken");
+module.exports.updateExpoPushToken = require("./updateExpoPushToken");
 
 // Number lookup
 module.exports.doesNumberExist = require("./doesNumberExist");
