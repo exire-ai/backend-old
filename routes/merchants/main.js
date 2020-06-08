@@ -4,6 +4,7 @@ For exire.ai
 #################################################*/
 
 //Merchant General
+module.exports.get = require("./get");
 module.exports.create = require("./create");
 module.exports.doesExist = require("./doesExist");
 

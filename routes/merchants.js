@@ -9,6 +9,7 @@ let merchants = require("./merchants/main");
 
 // Merchant general
 // router.get("/get/:userID", users.get);
+router.get("/get/:userID", merchants.get);
 router.post("/create", merchants.create);
 router.get("/doesExist/:userID", merchants.doesExist);
 
