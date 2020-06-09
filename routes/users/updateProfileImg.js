@@ -12,7 +12,7 @@ module.exports = async function (req, res) {
   modelDict.user.updateOne({
     "userID" : req.params.userID
   }, {
-    "profileImg" : req.params.profileImg
+    "profileImg" : req.body.profileImg
   }, {
     _id : 0
   }).then(result => {

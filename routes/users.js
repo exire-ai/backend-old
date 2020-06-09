@@ -60,6 +60,6 @@ router.get("/deleteFriend/:userID/:otherUserID", users.deleteFriend);
 router.get("/addFriend/:userID/:otherUserID", users.addFriend);
 
 // profileImg
-router.get("/updateProfileImg/:userID/:profileImg", users.updateProfileImg);
+router.post("/updateProfileImg/:userID", users.updateProfileImg);
 
 module.exports = router;
