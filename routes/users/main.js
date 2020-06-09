@@ -54,3 +54,6 @@ module.exports.updateLocation = require("./updateLocation");
 module.exports.getFriends = require("./getFriends");
 module.exports.deleteFriend = require("./deleteFriend");
 module.exports.addFriend = require("./addFriend");
+
+// profileImg
+module.exports.updateProfileImg = require("./updateProfileImg");

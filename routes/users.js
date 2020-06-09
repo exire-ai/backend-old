@@ -59,4 +59,7 @@ router.get("/getFriends/:userID", users.getFriends);
 router.get("/deleteFriend/:userID/:otherUserID", users.deleteFriend);
 router.get("/addFriend/:userID/:otherUserID", users.addFriend);
 
+// profileImg
+router.get("/updateProfileImg/:userID/:profileImg", users.updateProfileImg);
+
 module.exports = router;
