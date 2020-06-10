@@ -24,17 +24,18 @@ function shuffle(array) {
   return array;
 }
 
-var getRecommended = async function (categories, callback) {
+var getRecommended = async function (score, callback) {
   modelDict.venue.find({
-    subcategory: { $in: categories }
+    subcategory: { $in: Object.keys(score) }
   }, {
     _id: 0
   }).then(result => {
     for (i in result) {
-      result[i].rank = 20 + (40*score[result.subcategory]/score.total) + (35*result[i].rank) + Math.floor(Math.random() * Math.floor(5))
+      result[i].rank = 20 + (40*score[result[i].subcategory]/score.total) + (40*result[i].rank/5)
+      result[i].rank = (100 - result[i].rank) * .75 + result[i].rank
     }
     result.sort((a, b) => (a.rank > b.rank) ? 1 : -1)
-    callback(result)
+    callback(result.slice(0, result.length > 10 ? 10 : result.length - 1))
   }).catch(err => {
     callback([]);
   })
@@ -50,11 +51,11 @@ module.exports = async function (req, res) {
       total: result.length
     }
     for (user in result) {
-      for (category in user.categories) {
-        if (score.includes(category)) {
-          score[category] = score[category + 1]
+      for (category in result[user].categories) {
+        if (result[user].categories[category] in score) {
+          score[result[user].categories[category]] = score[result[user].categories[category]] + 1
         } else {
-          score[category] = 1
+          score[result[user].categories[category]] = 1
         }
       }
     }
