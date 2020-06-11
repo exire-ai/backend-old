@@ -18,6 +18,7 @@ const UserSchema = new mongoose.Schema({
   lat: { type: Number, default: 0 },
   lon: { type: Number, default: 0 },
   expoPushToken: { type: String, default: "" },
+  profileImg: { type: String, default: "" },
 });
 
 module.exports = UserSchema;

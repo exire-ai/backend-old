@@ -25,5 +25,6 @@ router.get("/getActivityRecommended/:userID", plans.getActivityRecommended);
 router.get("/getRecentPlans", plans.getRecentPlans);
 router.get("/getNearby/:lat/:lon", plans.getNearby);
 router.post("/getByList", plans.getByList);
+router.post("/getRecommendedGroup", plans.getRecommendedGroup);
 
 module.exports = router;
