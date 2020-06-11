@@ -8,6 +8,9 @@ module.exports.get = require("./get");
 module.exports.create = require("./create");
 module.exports.doesExist = require("./doesExist");
 
+//Stripe Integration
+module.exports.updateStripeID = require("./updateStripeAccountID");
+
 //Venues
 module.exports.addVenue = require("./addVenue");
 
