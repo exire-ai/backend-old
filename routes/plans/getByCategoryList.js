@@ -49,11 +49,11 @@ var getEvents = async function (ids, callback) {
 }
 
 module.exports = async function (req, res) {
-  var categories = shuffle(req.params.categories.split(','));
+  var categories = req.params.categories.split(',');
   getVenues(categories, function(venues) {
     getEvents(categories, function(events) {
       var result = venues.concat(events)
-      res.json(result)
+      res.json(shuffle(result))
     });
   });
 }
