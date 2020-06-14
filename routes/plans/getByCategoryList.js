@@ -30,7 +30,8 @@ var getEvents = async function (ids, callback) {
 }
 
 module.exports = async function (req, res) {
-  var categories = req.query.categories.split(',');
+  // var categories = req.query.categories.split(',');
+  var categories = ['sushi', 'italian']
   getVenues(categories, function(venues) {
     getEvents(categories, function(events) {
       var result = venues.concat(events)
