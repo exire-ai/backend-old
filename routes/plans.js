@@ -26,5 +26,6 @@ router.get("/getRecentPlans", plans.getRecentPlans);
 router.get("/getNearby/:lat/:lon", plans.getNearby);
 router.post("/getByList", plans.getByList);
 router.post("/getRecommendedGroup", plans.getRecommendedGroup);
+router.post("/getByCategoryList", plans.getByCategoryList);
 
 module.exports = router;

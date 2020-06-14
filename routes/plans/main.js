@@ -20,3 +20,4 @@ module.exports.getRecentPlans = require("./getRecentPlans");
 module.exports.getNearby = require("./getNearby");
 module.exports.getByList = require("./getByList");
 module.exports.getRecommendedGroup = require("./getRecommendedGroup");
+module.exports.getByCategoryList = require("./getByCategoryList");
