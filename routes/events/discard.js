@@ -10,7 +10,7 @@ module.exports = async function (req, res) {
     return res.status(400).send('Missing placeID')
   }
   modelDict.newEvent.deleteOne({
-    "placeID" : req.params.placeID
+    "eventID" : req.params.placeID
   }).then(result => {
     if (result.n == 1) {
       res.json(true)

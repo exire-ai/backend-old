@@ -10,7 +10,7 @@ module.exports = async function (req, res) {
     return res.status(400).send('Missing placeID')
   }
   modelDict.event.updateOne({
-    "placeID" : req.params.placeID
+    "eventID" : req.params.placeID
   }, {
     $inc: {
       peopleWatching: 1

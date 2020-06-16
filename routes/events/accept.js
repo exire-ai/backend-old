@@ -7,7 +7,7 @@ let modelDict = require('../models/schema').modelDict;
 
 var findOne = (placeID, res, _callback) => {
   modelDict.newEvent.findOne({
-    "placeID" : placeID
+    "eventID" : placeID
   }, { _id : 0,
         __v : 0
   }).then(result => {
@@ -43,7 +43,7 @@ module.exports = async function (req, res) {
       .then(result => {
         if (result != null) {
           modelDict.newEvent.deleteOne({
-            "placeID" : req.params.placeID
+            "eventID" : req.params.placeID
           }).then(result => {
             if (result.n == 1) {
               res.json(true)
