@@ -68,6 +68,11 @@ const NewEventModel = Places.model("NewEvents", NewEventSchema, "NewEvents");
 const PlanModel = Plans.model("Data", PlanSchema, "Data");
 const ChatModel = Chats.model("Data", ChatSchema, "Data");
 const MerchantModel = Merchants.model("Data", MerchantSchema, "Data");
+const VenueApplicationModel = Places.model(
+  "VenueApplications",
+  VenueSchema,
+  "VenueApplications"
+);
 
 //Creating a dictionary of the datatype names and the models
 const modelDict = {
@@ -79,6 +84,7 @@ const modelDict = {
   plan: PlanModel,
   chat: ChatModel,
   merchant: MerchantModel,
+  venueApplication: VenueApplicationModel,
 };
 
 //Exporting model dictionary to be used within endpoints
