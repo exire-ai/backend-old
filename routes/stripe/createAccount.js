@@ -2,10 +2,9 @@ module.exports = async function (req, res) {
   var code = req.body.code;
 
   const stripe = require("stripe")(
-    "sk_test_vgRX5ekCjGOpa9dPgZLYZNya00dIBzvP9t"
+    "sk_live_pTtGI4THV0o5GhFbg0lPeeeJ00iywCU686"
   );
 
-  console.log("Hello");
   try {
     const response = await stripe.oauth.token({
       grant_type: "authorization_code",
