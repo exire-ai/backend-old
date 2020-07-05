@@ -13,11 +13,13 @@
     "express": "^4.17.1",
     "http-errors": "~1.7.3",
     "jade": "~1.11.0",
+    "jsonwebtoken": "^8.5.1",
     "mongo": "^0.1.0",
     "mongoclient": "^1.0.3",
     "mongodb": "^3.5.5",
     "mongoose": "^5.9.7",
     "morgan": "~1.9.1",
+    "nodemon": "^2.0.4",
     "sentence-tokenizer": "^1.0.1",
     "stripe": "^8.55.0",
     "twilio": "^3.42.1"
