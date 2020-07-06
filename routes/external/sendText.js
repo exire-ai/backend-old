@@ -6,9 +6,10 @@ For exire.ai
 var apn = require('apn');
 path = require("path")
 var modelDict = require('../models/schema').modelDict;
+const { TWILIO_SID, TWILIO_KEY } = require('../../config');
 
-const accountSid = 'AC18ea0b9d9a7d1679debe2aacba4cb22f';
-const authToken = 'd2f95372dc80661ed66333d7aebe7d90';
+const accountSid = TWILIO_SID;
+const authToken = TWILIO_KEY;
 const client = require('twilio')(accountSid, authToken);
 
 var sendText = (body, callback) => {

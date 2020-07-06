@@ -1,4 +1,5 @@
-const stripe = require("stripe")("sk_live_pTtGI4THV0o5GhFbg0lPeeeJ00iywCU686");
+const { STRIPE_KEY } = require('../../config');
+const stripe = require("stripe")(STRIPE_KEY);
 
 module.exports = async function (req, res) {
   const paymentIntent = await stripe.paymentIntents.create({
