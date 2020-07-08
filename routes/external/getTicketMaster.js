@@ -5,14 +5,14 @@ For exire.ai
 
 const https = require('https');
 const Tokenizer = require('sentence-tokenizer');
-
+const { TICKETMASTER_KEY } = require('../../config');
 let modelDict = require('../models/schema').modelDict;
 
 var getDetails = async function (eventID, callback) {
   var options = {
     hostname: 'app.ticketmaster.com',
     port: 443,
-    path: '/discovery/v2/events/' + eventID + '?apikey=9HWknNXeYMhIDqFu9XEWANIclVRDb38f',
+    path: '/discovery/v2/events/' + eventID + '?apikey=' + TICKETMASTER_KEY,
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
