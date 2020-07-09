@@ -9,6 +9,7 @@
     "apn": "^2.2.0",
     "complexity-report": "^2.0.0-alpha",
     "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
     "debug": "~4.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
