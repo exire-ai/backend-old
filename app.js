@@ -29,17 +29,15 @@ const tokenAuth = function (req, res, next) {
       next();
     } else {
       res.status(401).send({
-        message: "Unauthorized token supplied."
-      })
+        message: "Unauthorized token supplied.",
+      });
     }
   } else {
     res.status(401).send({
-      message: "No token supplied."
-    })
+      message: "No token supplied.",
+    });
   }
 };
-
-app.use(tokenAuth);
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -49,6 +47,8 @@ app.use(function (req, res, next) {
   );
   next();
 });
+
+app.use(tokenAuth);
 
 app.use(logger("dev"));
 app.use(express.json());
