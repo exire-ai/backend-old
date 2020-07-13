@@ -12,3 +12,4 @@ module.exports.update = require("./update");
 module.exports.views = require("./views");
 module.exports.linkClicks = require("./linkClicks");
 module.exports.createApplication = require("./createApplication");
+module.exports.setValid = require("./setValid");

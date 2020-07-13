@@ -29,6 +29,7 @@ const VenueSchema = new mongoose.Schema({
   businessID: { type: String, default: "" },
   times: { type: Object, default: {} },
   address: { type: String, default: "" },
+  valid: { type: Boolean, default: false }, //Venue is actively operating, COVID compatible
 });
 
 module.exports = VenueSchema;
