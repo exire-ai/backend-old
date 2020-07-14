@@ -15,6 +15,7 @@ const PlanSchema = new mongoose.Schema({
   start_time: { type: Number, default: 0 },
   users: { type: Array, default: [] },
   bookings: { type: Array, default: [] },
+  ids: { type: Array, default: [] }
 });
 
 module.exports = PlanSchema;
