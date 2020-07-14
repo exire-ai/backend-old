@@ -71,30 +71,12 @@ module.exports = async function (req, res) {
             } else {
               var tempList = [];
               for (elem in result) {
-                tempList.concat(result[elem].ids)
-                console.log(result[elem])
+                tempList = tempList.concat(result[elem].ids)
               }
-              console.log(tempList)
               getVenues(tempList, function (venueData) {
                 getEvents(tempList, function (eventData) {
                   data = venueData.concat(eventData);
 
-                  console.log(data)
-
-                  // for (elem in result) {
-                  //   for (j in result[elem]["ids"]) {
-                  //     for (p in data) {
-                  //       console.log(data[p]["eventID"]);
-                  //       console.log(result[elem]["bookings"][j]["eventID"]);
-                  //       if (
-                  //         data[p]["eventID"] ===
-                  //         result[elem]["bookings"][j]["eventID"]
-                  //       ) {
-                  //         result[elem]["bookings"][j]["venue"] = data[p];
-                  //       }
-                  //     }
-                  //   }
-                  // }
 
                   for (elem in result) {
                     for (j in result[elem]["ids"]) {
