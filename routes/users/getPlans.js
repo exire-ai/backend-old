@@ -3,6 +3,7 @@ Developed by: Hayden Daly
 For exire.ai
 #################################################*/
 
+const _ = require("lodash");
 let modelDict = require("../models/schema").modelDict;
 
 var getVenues = async function (ids, callback) {
@@ -82,12 +83,11 @@ module.exports = async function (req, res) {
                     for (j in result[elem]["ids"]) {
                       for (p in data) {
                         if ( 
-                          data[p]["eventID"] ===
-                          result[elem]["ids"][j]["eventID"] ||
-                          data[p]["planID"] ===
-                          result[elem]["ids"][j]["venueID"]
+                          _.get(data[p], "placeID", _.get(data[p], "eventID")) ===
+                          result[elem]["ids"][j]
                         ) {
                           result[elem]["ids"][j] = data[p];
+                          console.log(result)
                         }
                       }
                     }
