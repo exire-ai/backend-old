@@ -42,10 +42,10 @@ module.exports = async function (req, res) {
       if (!req.query.populate) {
           res.json(result)
       } else {
-        getVenues(result.venues, function(venues) {
-          getEvents(result.venues, function(events) {
+        getVenues(result.ids, function(venues) {
+          getEvents(result.ids, function(events) {
             var temp = venues.concat(events)
-            result.venues = temp;
+            result.ids = temp;
             res.json(result)
           });
         });
