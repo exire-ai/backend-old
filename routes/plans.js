@@ -16,6 +16,7 @@ router.post("/create", plans.create);
 router.get("/get/:planID", plans.get);
 router.get("/delete/:planID", plans.delete);
 router.post("/update/:planID", plans.update);
+router.get("/addUser/:planID/:userID", plans.addUser);
 
 router.get("/getByCategory/:category", plans.getByCategory);
 router.get("/getByHierCategory/:category", plans.getByHierCategory);

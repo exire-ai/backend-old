@@ -10,6 +10,7 @@ module.exports.create = require("./create");
 module.exports.get = require("./get");
 module.exports.delete = require("./delete");
 module.exports.update = require("./update");
+module.exports.addUser = require("./addUser");
 
 module.exports.getByCategory = require("./getByCategory");
 module.exports.getByHierCategory = require("./getByHierCategory");
