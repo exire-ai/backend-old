@@ -60,7 +60,6 @@ module.exports = async function (req, res) {
               result.users = userData;
               res.json(result)
             })
-
           });
         });
       }
