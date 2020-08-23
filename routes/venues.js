@@ -14,5 +14,6 @@ router.post("/update/:placeID", venues.update);
 router.get("/views/:placeID", venues.views);
 router.get("/linkClicks/:placeID", venues.linkClicks);
 router.post("/createApplication", venues.createApplication);
+router.get("/setValid/:placeID/:isValid", venues.setValid);
 
 module.exports = router;

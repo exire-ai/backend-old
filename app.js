@@ -5,6 +5,7 @@ For exire.ai
 
 const createError = require("http-errors");
 const express = require("express");
+const cors = require("cors");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
@@ -29,26 +30,28 @@ const tokenAuth = function (req, res, next) {
       next();
     } else {
       res.status(401).send({
-        message: "Unauthorized token supplied."
-      })
+        message: "Unauthorized token supplied.",
+      });
     }
   } else {
     res.status(401).send({
-      message: "No token supplied."
-    })
+      message: "No token supplied.",
+    });
   }
 };
 
-app.use(tokenAuth);
+app.use(cors());
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
+
+app.use(tokenAuth);
 
 app.use(logger("dev"));
 app.use(express.json());
