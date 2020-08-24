@@ -91,7 +91,6 @@ module.exports = async function (req, res) {
                   getUsers(userIDs, function (userData) {
                     data = venueData.concat(eventData);
 
-
                     for (elem in result) {
                       for (j in result[elem]["ids"]) {
                         for (p in data) {
@@ -105,7 +104,9 @@ module.exports = async function (req, res) {
                       }
                       for (x in result[elem]["users"]) {
                         for (y in userData) {
-                          if(userData[y]["userID"] === result[elem]["users"][x]) {
+                          if(
+                            _.get(userData[y], "userID") === result[elem]["users"][x]
+                            ) {
                             result[elem]["users"][x] = userData[y];
                           }
                         }
@@ -114,7 +115,6 @@ module.exports = async function (req, res) {
   
                     res.json(result);
                   })
-
                 });
               });
             }
