@@ -26,9 +26,11 @@ const VenueSchema = new mongoose.Schema({
   linkClicks: { type: Number, default: 0 },
   tag: { type: String, default: "" },
   accessURL: { type: String, default: "" },
+  deliveryURL: { type: String, default: "" },
+  menuURL: { type: String, default: "" },
   businessID: { type: String, default: "" },
   times: { type: Object, default: {} },
-  address: { type: String, default: "" },
+  address: { type: Array, default: [] },
   valid: { type: Boolean, default: false }, //Venue is actively operating, COVID compatible
 });
 
