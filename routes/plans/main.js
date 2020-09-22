@@ -1,6 +1,5 @@
 /*#################################################
-Developed by: Hayden Daly
-For exire.ai
+Developed by: Exire.ai
 #################################################*/
 
 module.exports.getAllCategories = require("./getAllCategories");
