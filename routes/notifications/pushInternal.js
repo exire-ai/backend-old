@@ -16,8 +16,8 @@ module.exports = async function (userID, admin, dev, callback) {
         var apnProvider = new apn.Provider({
           token: {
             key: 'routes/notifications/apns.p8',
-            keyId: 'X5RW45ZAG7',
-            teamId: 'B27FT2QD52'
+            keyId: '',
+            teamId: ''
           },
           development: true,
           production: false
@@ -77,8 +77,8 @@ module.exports = async function (userID, admin, dev, callback) {
         var apnProvider = new apn.Provider({
           token: {
             key: 'routes/notifications/apns.p8',
-            keyId: 'X5RW45ZAG7',
-            teamId: 'B27FT2QD52'
+            keyId: '',
+            teamId: ''
           },
           development: true,
           production: false
