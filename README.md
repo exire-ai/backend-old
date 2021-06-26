@@ -1,6 +1,6 @@
-# Exire Backend
+# Exire Original Backend
 
-Simple Express REST API for MongoDB Atlas with Stripe, APNs Notifications, and more.
+Simple Express REST API for MongoDB Atlas with Stripe, APNs Notifications, and more. This was deprecated shortly after building to rebuild much cleaner.
 
 ## Running
 
